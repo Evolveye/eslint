@@ -1,0 +1,28 @@
+{
+  "name": "eslint",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Evolveye/eslint.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Evolveye/eslint/issues"
+  },
+  "homepage": "https://github.com/Evolveye/eslint#readme",
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.12.16",
+    "@babel/plugin-proposal-class-properties": "^7.12.13",
+    "@babel/preset-env": "^7.12.16",
+    "@babel/preset-react": "^7.12.13",
+    "eslint": "^7.20.0",
+    "eslint-plugin-custom": "file:custom_rules",
+    "eslint-plugin-react": "^7.22.0"
+  }
+}
