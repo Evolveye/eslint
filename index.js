@@ -2,7 +2,10 @@ require( `./custom_rules/tests.js` )
 
 const something = []
 
-const arrow_params = ({ abc }, a) => {
+something[ 1 ]
+
+const arrow_params = ( { abc }, a ) => {
+  console.log( abc, a )
 }
 /*
 const arrow_obj = ({ abc }) => true

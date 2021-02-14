@@ -25,8 +25,8 @@ rules:
   # react/jsx-uses-vars-test-somthing-big: [ error ]
 
 
-  react/jsx-uses-vars: [ error ]
-    # - error
+  react/jsx-uses-vars:
+    - error
   react/jsx-uses-react:
     - error
   react/jsx-closing-bracket-location:
