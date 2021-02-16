@@ -18,18 +18,18 @@ parserOptions:
     jsx: true
     modules: true
 rules:
-  # custom/space-in-arrow-functions-parens:
-  #   - error
-  #   - never
-  # custom/space-in-functions-parens:
-  #   - error
-  #   - always
+  custom/space-in-arrow-functions-parens:
+    - error
+    - never
+  custom/space-in-functions-parens:
+    - error
+    - always
   custom/space-in-calls:
     - error
     - always
-  # custom/space-in-loops-and-ifs:
-  #   - error
-  #   - never
+  custom/space-in-loops-and-ifs:
+    - error
+    - never
 
   react/jsx-uses-vars:
     - error
@@ -78,6 +78,7 @@ rules:
     - always
   react/jsx-wrap-multilines:
     - error
+
   indent:
     - error
     - 2
@@ -154,3 +155,5 @@ rules:
   template-tag-spacing:
     - error
     - never
+  no-constant-condition:
+    - off

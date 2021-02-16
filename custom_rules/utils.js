@@ -1,5 +1,7 @@
-function validateSpacesInCtx( preRequiredData, a, b, undesirableErr, missingErr ) {
+function validateSpacesInCtx( preRequiredData, a, b, openOrClose ) {
   const { context, code, insertSpaces } = preRequiredData
+  const undesirableErr = `undesirableSpace${openOrClose === `open` ? `Start`: `End`}`
+  const missingErr = `missingSpace${openOrClose === `open` ? `Start`: `End`}`
 
   if (code.isSpaceBetween( a, b )) {
     if (!insertSpaces) context.report({
@@ -9,10 +11,10 @@ function validateSpacesInCtx( preRequiredData, a, b, undesirableErr, missingErr 
       },
       messageId: undesirableErr,
       fix: fixer => fixer.removeRange( [ a.range[ 1 ], b.range[ 0 ] ] ),
-    } )
+    })
   } else if (insertSpaces) {
     context.report({
-      loc: a.loc,
+      loc: openOrClose === `open` ? a.loc : b.loc,
       messageId: missingErr,
       fix: fixer => fixer.insertTextAfterRange( a.range, ` ` ),
     })
@@ -37,12 +39,12 @@ function checkSpaces( preRequiredData, tokens, parensData, firstTokenIndex ) {
         openParenToken.range[ 1 ],
         tokenAfterOpen.range[ 0 ],
       ] ),
-    } )
+    })
 
     return
   }
 
-  if (Array.isArray(parensData) && parensData.length == 1 && [ `ObjectExpression`, `ObjectPattern` ].includes(parensData[ 0 ].type)) {
+  if (Array.isArray( parensData ) && parensData.length == 1 && [ `ObjectExpression`, `ObjectPattern` ].includes( parensData[ 0 ].type )) {
     preRequiredData.insertSpaces = false
   }
 
