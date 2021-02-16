@@ -12,6 +12,7 @@ const arrow = (a, b) => true
 //*
 function fnObj( { c } ) {}
 function fn( a, b, { c } ) {}
+function * fnGen( a, b, { c } ) {}
 
 //*
 fnObj( { c:3 } )

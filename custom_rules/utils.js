@@ -25,8 +25,8 @@ function checkSpaces( preRequiredData, tokens, parensData, firstTokenIndex ) {
   const openParenToken = tokens[ firstTokenIndex ]
   const tokenAfterOpen = tokens[ firstTokenIndex + 1 ]
 
-  if (openParenToken.value != `(`) return
-  if (tokenAfterOpen.value == `)`) {
+  if (openParenToken.value !== `(`) return
+  if (tokenAfterOpen.value === `)`) {
     if (openParenToken.range[ 1 ] != tokenAfterOpen.range[ 0 ]) context.report({
       loc: {
         start: openParenToken.loc.end,
@@ -48,8 +48,9 @@ function checkSpaces( preRequiredData, tokens, parensData, firstTokenIndex ) {
   b = tokenAfterOpen
   validateSpacesInCtx( preRequiredData, a, b, `undesirableSpaceStart`, `missingSpaceStart` )
 
-  a = Array.isArray( parensData ) ? parensData[ parensData.length - 1 ] : parensData
-  b = context.getTokenAfter( a )
+  b = Array.isArray( parensData ) ? parensData[ parensData.length - 1 ] : parensData
+  b = context.getTokenAfter( b, { filter:token => token.value === `)` } )
+  a = context.getTokenBefore( b )
   validateSpacesInCtx( preRequiredData, a, b, `undesirableSpaceEnd`, `missingSpaceEnd` )
 }
 
