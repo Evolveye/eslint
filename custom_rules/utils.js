@@ -1,4 +1,4 @@
-function validateSpacesInCtx(preRequiredData, a, b, undesirableErr, missingErr) {
+function validateSpacesInCtx( preRequiredData, a, b, undesirableErr, missingErr ) {
   const { context, code, insertSpaces } = preRequiredData
 
   if (code.isSpaceBetween( a, b )) {
@@ -20,13 +20,14 @@ function validateSpacesInCtx(preRequiredData, a, b, undesirableErr, missingErr) 
 }
 
 
-function checkSpaces(preRequiredData, openParenToken, tokenAfterOpen) {
-  const { context, node } = preRequiredData
-  const { params } = node
+function checkSpaces( preRequiredData, tokens, parensData, firstTokenIndex ) {
+  const { context } = preRequiredData
+  const openParenToken = tokens[ firstTokenIndex ]
+  const tokenAfterOpen = tokens[ firstTokenIndex + 1 ]
 
   if (openParenToken.value != `(`) return
   if (tokenAfterOpen.value == `)`) {
-    if (openParenToken.range[ 1 ] != tokenAfterOpen.range[ 0 ] ) context.report({
+    if (openParenToken.range[ 1 ] != tokenAfterOpen.range[ 0 ]) context.report({
       loc: {
         start: openParenToken.loc.end,
         end: tokenAfterOpen.loc.start,
@@ -47,7 +48,7 @@ function checkSpaces(preRequiredData, openParenToken, tokenAfterOpen) {
   b = tokenAfterOpen
   validateSpacesInCtx( preRequiredData, a, b, `undesirableSpaceStart`, `missingSpaceStart` )
 
-  a = params[ params.length - 1 ]
+  a = Array.isArray( parensData ) ? parensData[ parensData.length - 1 ] : parensData
   b = context.getTokenAfter( a )
   validateSpacesInCtx( preRequiredData, a, b, `undesirableSpaceEnd`, `missingSpaceEnd` )
 }

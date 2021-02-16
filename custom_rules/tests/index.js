@@ -5,6 +5,8 @@ const tester = new RuleTester( { parserOptions:{ ecmaVersion:2015 } } )
 const testsNames = [
   `space-in-arrow-functions-parens`,
   `space-in-functions-parens`,
+  `space-in-calls`,
+  `space-in-loops-and-ifs`,
 ]
 const testsDataset = testsNames.map( name => ({
   name,

@@ -21,10 +21,15 @@ rules:
   custom/space-in-arrow-functions-parens:
     - error
     - never
-  # custom/space-in-arrow-functions-parens:
-  #   - error
-  # react/jsx-uses-vars-test-somthing-big: [ error ]
-
+  custom/space-in-functions-parens:
+    - error
+    - always
+  custom/space-in-calls:
+    - error
+    - always
+  custom/space-in-loops-and-ifs:
+    - error
+    - never
 
   react/jsx-uses-vars:
     - error
@@ -90,12 +95,6 @@ rules:
     - always
   prefer-template:
     - error
-  # space-in-parens: # brakuje ustawień jedynie dla funkcji
-  #   - error
-  #   - never # do sprawdzenia (never|always)
-    # - exceptions:
-    #     - "{}"
-        # - "[]" # o wiele częściej używa się key[ value ] niż destrukturyzacji
   no-unused-vars:
     - warn
   space-before-function-paren:
