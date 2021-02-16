@@ -9,7 +9,7 @@ const arrow_params = ({ abc },  a) => {
 }
 //*
 const arrow_obj = ({ abc }) => true
-const arrow_empty = (   ) => true
+const arrow_empty = () => true
 const arrow_var = a => true
 const arrow =   (a, b) => true
 

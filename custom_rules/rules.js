@@ -44,8 +44,23 @@ module.exports = {
           const tokens = context.getTokens( node )
 
           let a, b
-          if (params.length === 0) return
+
           if (tokens[ 0 ].value != `(`) return
+          if (tokens[ 1 ].value == `)`) {
+            const open = tokens[ 0 ]
+            const close = tokens[ 1 ]
+
+            if (open.range[ 1 ] != close.range[ 0 ] ) context.report({
+              loc: {
+                start: open.loc.end,
+                end: close.loc.start,
+              },
+              messageId: `undesirableSpaceInParens`,
+              fix: fixer => fixer.removeRange( [ open.range[ 1 ], close.range[ 0 ] ] ),
+            } )
+
+            return
+          }
 
           a = tokens[ 0 ]
           b = tokens[ 1 ]

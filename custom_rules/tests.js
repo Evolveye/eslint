@@ -13,6 +13,18 @@ tester.run( `space-in-arrow-functions-parens`, rules[ `space-in-arrow-functions-
     { code:`const arrow_obj = (  { abc }, a   ) => true` },
   ],
   invalid: [
+    {
+      errors: [ { messageId:`undesirableSpaceInParens` } ],
+      code: `const arrow_obj = ( ) => true`,
+      output: `const arrow_obj = () => true`,
+    },
+    {
+      errors: [ { messageId:`undesirableSpaceInParens` } ],
+      code: `const arrow_obj = (   ) => true`,
+      output: `const arrow_obj = () => true`,
+    },
+
+
     // options: [ `always` ]
     {
       errors: [ { messageId:`missingSpaceStart` }, { messageId:`missingSpaceEnd` } ],
