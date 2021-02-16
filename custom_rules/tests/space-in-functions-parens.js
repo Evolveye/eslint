@@ -2,8 +2,8 @@ module.exports = {
   valid: [
     { code:`function fnObj() {}` },
     { code:`function fnObj( c ) {}` },
-    { code:`function fnObj( { c } ) {}` },
-    { code:`function * fnObj(   { c } ) {}` },
+    { code:`function fnObj({ c }) {}` },
+    { code:`function * fnObj(   c ) {}` },
   ],
   invalid: [
     {
@@ -21,18 +21,18 @@ module.exports = {
     // options: [ `always` ]
     {
       errors: [ { messageId:`missingSpaceStart` }, { messageId:`missingSpaceEnd` } ],
-      code: `function fnObj({ c }) {}`,
-      output: `function fnObj( { c } ) {}`,
+      code: `function fnObj(c) {}`,
+      output: `function fnObj( c ) {}`,
     },
     {
       errors: [ { messageId:`missingSpaceStart` } ],
-      code: `function fnObj({ c } ) {}`,
-      output: `function fnObj( { c } ) {}`,
+      code: `function fnObj(c ) {}`,
+      output: `function fnObj( c ) {}`,
     },
     {
       errors: [ { messageId:`missingSpaceEnd` } ],
-      code: `function fnObj( { c }) {}`,
-      output: `function fnObj( { c } ) {}`,
+      code: `function fnObj( c) {}`,
+      output: `function fnObj( c ) {}`,
     },
     {
       errors: [ { messageId:`missingSpaceStart` } ],

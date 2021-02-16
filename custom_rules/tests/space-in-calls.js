@@ -1,7 +1,7 @@
 module.exports = {
   valid: [
     { code:`fn()` },
-    { code:`fn( { c:3 } )` },
+    { code:`fn({ c:3 })` },
     { code:`fn( 1, 2, { c:3 } )` },
     { code:`fn(  1, 2, something[ 2 ] )` },
   ],
@@ -21,18 +21,18 @@ module.exports = {
     // options: [ `always` ]
     {
       errors: [ { messageId:`missingSpaceStart` }, { messageId:`missingSpaceEnd` } ],
-      code: `fn({ c })`,
-      output: `fn( { c } )`,
+      code: `fn(c)`,
+      output: `fn( c )`,
     },
     {
       errors: [ { messageId:`missingSpaceStart` } ],
-      code: `fn({ c } )`,
-      output: `fn( { c } )`,
+      code: `fn(c )`,
+      output: `fn( c )`,
     },
     {
       errors: [ { messageId:`missingSpaceEnd` } ],
-      code: `fn( { c })`,
-      output: `fn( { c } )`,
+      code: `fn( c)`,
+      output: `fn( c )`,
     },
     {
       errors: [ { messageId:`missingSpaceStart` } ],

@@ -18,18 +18,18 @@ parserOptions:
     jsx: true
     modules: true
 rules:
-  custom/space-in-arrow-functions-parens:
-    - error
-    - never
-  custom/space-in-functions-parens:
-    - error
-    - always
+  # custom/space-in-arrow-functions-parens:
+  #   - error
+  #   - never
+  # custom/space-in-functions-parens:
+  #   - error
+  #   - always
   custom/space-in-calls:
     - error
     - always
-  custom/space-in-loops-and-ifs:
-    - error
-    - never
+  # custom/space-in-loops-and-ifs:
+  #   - error
+  #   - never
 
   react/jsx-uses-vars:
     - error

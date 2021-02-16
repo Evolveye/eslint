@@ -2,7 +2,7 @@ module.exports = {
   valid: [
     { code:`const arrow_obj = a => true` },
     { code:`const arrow_obj = () => true` },
-    { code:`const arrow_obj = ( { abc } ) => true` },
+    { code:`const arrow_obj = ({ abc }) => true` },
     { code:`const arrow_obj = (  { abc }, a   ) => true` },
   ],
   invalid: [
@@ -21,18 +21,18 @@ module.exports = {
     // options: [ `always` ]
     {
       errors: [ { messageId:`missingSpaceStart` }, { messageId:`missingSpaceEnd` } ],
-      code: `const arrow_obj = ({ abc }) => true`,
-      output: `const arrow_obj = ( { abc } ) => true`,
+      code: `const arrow_obj = (a) => true`,
+      output: `const arrow_obj = ( a ) => true`,
     },
     {
       errors: [ { messageId:`missingSpaceStart` } ],
-      code: `const arrow_obj = ({ abc } ) => true`,
-      output: `const arrow_obj = ( { abc } ) => true`,
+      code: `const arrow_obj = (a ) => true`,
+      output: `const arrow_obj = ( a ) => true`,
     },
     {
       errors: [ { messageId:`missingSpaceEnd` } ],
-      code: `const arrow_obj = ( { abc }) => true`,
-      output: `const arrow_obj = ( { abc } ) => true`,
+      code: `const arrow_obj = ( a) => true`,
+      output: `const arrow_obj = ( a ) => true`,
     },
     {
       errors: [ { messageId:`missingSpaceStart` } ],

@@ -42,6 +42,10 @@ function checkSpaces( preRequiredData, tokens, parensData, firstTokenIndex ) {
     return
   }
 
+  if (Array.isArray(parensData) && parensData.length == 1 && [ `ObjectExpression`, `ObjectPattern` ].includes(parensData[ 0 ].type)) {
+    preRequiredData.insertSpaces = false
+  }
+
   let a, b
 
   a = openParenToken

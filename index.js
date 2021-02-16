@@ -1,8 +1,10 @@
-require( `./custom_rules/tests.js` )
+// require( `./custom_rules/tests.js` )
 
 const something = []
 
-//*
+something.method( 123)
+
+/*
 const arrow_params = ({ abc },  a) => true
 const arrow_obj = ({ abc }) => true
 const arrow_empty = () => true
@@ -10,12 +12,12 @@ const arrow_var = a => true
 const arrow = (a, b) => true
 
 //*
-function fnObj( { c } ) {}
+function fnObj({ c }) {}
 function fn( a, b, { c } ) {}
 function * fnGen( a, b, { c } ) {}
 
 //*
-fnObj( { c:3 } )
+fnObj({ c:3 })
 fn( 1, 2, { c:3 } )
 fn( 1, 2, something[ 2 ] )
 

@@ -77,11 +77,22 @@ module.exports = {
 
       return {
         CallExpression( node ) {
+          const tokens = context.getTokens( node )
+          let firstParenIndex = 0
+
+          for (let i = 0;  i < tokens.length;  ++i) {
+            if (tokens[ i ].value != `(`) continue
+
+            firstParenIndex = i
+
+            break
+          }
+
           checkSpaces(
             { context, code, insertSpaces, parensData:node.arguments },
-            context.getTokens( node ),
+            tokens,
             node.arguments,
-            1,
+            firstParenIndex,
           )
         },
       }
