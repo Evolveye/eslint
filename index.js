@@ -4,15 +4,16 @@ const something = []
 
 something[ 1 ]
 
-const arrow_params = ( { abc }, a ) => {
+const arrow_params = ({ abc },  a) => {
   console.log( abc, a )
 }
-/*
+//*
 const arrow_obj = ({ abc }) => true
-const arrow_empty = () => true
+const arrow_empty = (   ) => true
 const arrow_var = a => true
-const arrow = (a, b) => true
+const arrow =   (a, b) => true
 
+/*
 if (something[ 0 ]);
 if (arrow());
 

@@ -20,6 +20,7 @@ parserOptions:
 rules:
   custom/space-in-arrow-functions-parens:
     - error
+    - never
   # custom/space-in-arrow-functions-parens:
   #   - error
   # react/jsx-uses-vars-test-somthing-big: [ error ]

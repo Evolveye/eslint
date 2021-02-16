@@ -7,14 +7,36 @@ module.exports = {
       docs: {
         description: ``,
       },
-      schema: [],
+      schema: [ { "enum":[ `always`, `never` ] } ],
       messages: {
-        spaceStart: `Missing space after parens open`,
-        spaceEnd: `Missing space before parens close`,
+        missingSpaceStart: `Missing space after parens open`,
+        missingSpaceEnd: `Missing space before parens close`,
+        undesirableSpaceStart: `Undesirable space after parens open`,
+        undesirableSpaceEnd: `Undesirable space before parens close`,
+        undesirableSpaceInParens: `Undesirable space between parens without params`,
       },
     },
     create( context ) {
       const code = context.getSourceCode()
+      const insertSpaces = context.options[ 0 ] === `never` ? false : true
+      const validateSpaces = (a, b, undesirableErr, missingErr) => {
+        if (code.isSpaceBetween( a, b )) {
+          if (!insertSpaces) context.report({
+            loc: {
+              start: a.loc.end,
+              end: b.loc.start,
+            },
+            messageId: undesirableErr,
+            fix: fixer => fixer.removeRange( [ a.range[ 1 ], b.range[ 0 ] ] ),
+          } )
+        } else if (insertSpaces) {
+          context.report({
+            loc: a.loc,
+            messageId: missingErr,
+            fix: fixer => fixer.insertTextAfterRange( a.range, ` ` ),
+          })
+        }
+      }
 
       return {
         ArrowFunctionExpression( node ) {
@@ -22,34 +44,16 @@ module.exports = {
           const tokens = context.getTokens( node )
 
           let a, b
-
           if (params.length === 0) return
           if (tokens[ 0 ].value != `(`) return
 
-          // console.log( tokens[ 0 ] )
-
           a = tokens[ 0 ]
           b = tokens[ 1 ]
-          if (!code.isSpaceBetween( a, b )) {
-            context.report({
-              loc: a.loc,
-              messageId: `spaceStart`,
-              fix: fixer => fixer.insertTextAfterRange( a.range, ` ` ),
-            })
-          }
+          validateSpaces( a, b, `undesirableSpaceStart`, `missingSpaceStart` )
 
           a = params[ params.length - 1 ]
           b = context.getTokenAfter( a )
-          if (!code.isSpaceBetween( a, b )) {
-            context.report({
-              loc: b.loc,
-              messageId: `spaceEnd`,
-              fix: fixer => fixer.insertTextBeforeRange( b.range, ` ` ),
-            } )
-          }
-
-
-          return
+          validateSpaces( a, b, `undesirableSpaceEnd`, `missingSpaceEnd` )
 
           // console.log( { range, params:params.map( ({ range }) => range ) } )
         },
