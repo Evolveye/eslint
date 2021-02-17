@@ -1,6 +1,6 @@
 // See: https://astexplorer.net
 
-const { messages, checkSpaces } = require( `./utils.js` )
+const { messages, checkSpaces, findParenIndex } = require( `./utils.js` )
 
 module.exports = {
   "space-in-arrow-functions-parens": {
@@ -16,11 +16,14 @@ module.exports = {
 
       return {
         ArrowFunctionExpression( node ) {
+          const tokens = context.getTokens( node )
+          const firstParenIndex = findParenIndex( tokens, 0 )
+
           checkSpaces(
             { context, code, insertSpaces },
-            context.getTokens( node ),
+            tokens,
             node.params,
-            0,
+            firstParenIndex,
           )
         },
       }
@@ -42,15 +45,19 @@ module.exports = {
       return {
         FunctionDeclaration( node ) {
           const tokens = context.getTokens( node )
-          let firstParenIndex = 0
+          const firstParenIndex = findParenIndex( tokens, 2 )
 
-          for (let i = 0;  i < tokens.length;  ++i) {
-            if (tokens[ i ].value != `(`) continue
+          checkSpaces(
+            { context, code, insertSpaces },
+            tokens,
+            node.params,
+            firstParenIndex,
+          )
+        },
 
-            firstParenIndex = i
-
-            break
-          }
+        FunctionExpression( node ) {
+          const tokens = context.getTokens( node )
+          const firstParenIndex = findParenIndex( tokens, 0 )
 
           checkSpaces(
             { context, code, insertSpaces },
@@ -78,15 +85,7 @@ module.exports = {
       return {
         CallExpression( node ) {
           const tokens = context.getTokens( node )
-          let firstParenIndex = 0
-
-          for (let i = 0;  i < tokens.length;  ++i) {
-            if (tokens[ i ].value != `(`) continue
-
-            firstParenIndex = i
-
-            break
-          }
+          const firstParenIndex = findParenIndex( tokens, 1 )
 
           checkSpaces(
             { context, code, insertSpaces, parensData:node.arguments },
@@ -120,17 +119,10 @@ module.exports = {
             1,
           )
         },
+
         ForOfStatement( node ) {
           const tokens = context.getTokens( node )
-          let firstParenIndex = 0
-
-          for (let i = 0;  i < tokens.length;  ++i) {
-            if (tokens[ i ].value != `(`) continue
-
-            firstParenIndex = i
-
-            break
-          }
+          const firstParenIndex = findParenIndex( tokens, 1 )
 
           checkSpaces(
             { context, code, insertSpaces },
@@ -139,36 +131,19 @@ module.exports = {
             firstParenIndex,
           )
         },
+
         ForInStatement( node ) {
-          const tokens = context.getTokens( node )
-          let firstParenIndex = 0
-
-          for (let i = 0;  i < tokens.length;  ++i) {
-            if (tokens[ i ].value != `(`) continue
-
-            firstParenIndex = i
-
-            break
-          }
-
           checkSpaces(
             { context, code, insertSpaces },
-            tokens,
+            context.getTokens( node ),
             node.right,
-            firstParenIndex,
+            1,
           )
         },
+
         ForStatement( node ) {
           const tokens = context.getTokens( node )
-          let firstParenIndex = 0
-
-          for (let i = 0;  i < tokens.length;  ++i) {
-            if (tokens[ i ].value != `(`) continue
-
-            firstParenIndex = i
-
-            break
-          }
+          const firstParenIndex = findParenIndex( tokens, 1 )
 
           checkSpaces(
             { context, code, insertSpaces },
@@ -177,23 +152,13 @@ module.exports = {
             firstParenIndex,
           )
         },
+
         WhileStatement( node ) {
-          const tokens = context.getTokens( node )
-          let firstParenIndex = 0
-
-          for (let i = 0;  i < tokens.length;  ++i) {
-            if (tokens[ i ].value != `(`) continue
-
-            firstParenIndex = i
-
-            break
-          }
-
           checkSpaces(
             { context, code, insertSpaces },
-            tokens,
+            context.getTokens( node ),
             node.test,
-            firstParenIndex,
+            1,
           )
         },
       }

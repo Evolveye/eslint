@@ -4,6 +4,9 @@ module.exports = {
     { code:`function fnObj( c ) {}` },
     { code:`function fnObj({ c }) {}` },
     { code:`function * fnObj(   c ) {}` },
+    { code:`class X { method() {} }` },
+    { code:`class X { method( c ) {} }` },
+    { code:`class X { method({ c }) {} }` },
   ],
   invalid: [
     {
@@ -15,6 +18,11 @@ module.exports = {
       errors: [ { messageId:`undesirableSpaceInParens` } ],
       code: `function fnObj(   ) {}`,
       output: `function fnObj() {}`,
+    },
+    {
+      errors: [ { messageId:`undesirableSpaceInParens` } ],
+      code: `class X { method(  ) {} }`,
+      output: `class X { method() {} }`,
     },
 
 
@@ -43,6 +51,11 @@ module.exports = {
       errors: [ { messageId:`missingSpaceStart` } ],
       code: `function fnObj(a, { c } ) {}`,
       output: `function fnObj( a, { c } ) {}`,
+    },
+    {
+      errors: [ { messageId:`missingSpaceStart` } ],
+      code: `class X { method(a, { c } ) {} }`,
+      output: `class X { method( a, { c } ) {} }`,
     },
 
 
@@ -75,6 +88,12 @@ module.exports = {
       errors: [ { messageId:`undesirableSpaceStart` } ],
       code: `function fnObj( a, { c }) {}`,
       output: `function fnObj(a, { c }) {}`,
+      options: [ `never` ],
+    },
+    {
+      errors: [ { messageId:`undesirableSpaceStart` } ],
+      code: `class X { method( a, { c }) {} }`,
+      output: `class X { method(a, { c }) {} }`,
       options: [ `never` ],
     },
   ],

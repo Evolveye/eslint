@@ -18,9 +18,9 @@ parserOptions:
     jsx: true
     modules: true
 rules:
-  custom/space-in-arrow-functions-parens:
-    - error
-    - never
+  # custom/space-in-arrow-functions-parens:
+  #   - error
+  #   - never
   custom/space-in-functions-parens:
     - error
     - always

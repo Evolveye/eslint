@@ -1,6 +1,10 @@
 // require( `./custom_rules/tests.js` )
 
 const something = []
+const obj = {
+  fnExp1() {},
+  fnExp2( a ) {},
+}
 
 //*
 const arrow_params = ({ abc },  a) => true
@@ -28,6 +32,9 @@ for (const value of [ 1, 2, 3 ]);
 for (const value in {});
 for (let i = 0; i < 1; ++i);
 
-while (1);
+while (false);
+
+//*
+class X { method( a, { c } ) {} }
 
 // */

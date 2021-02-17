@@ -24,7 +24,7 @@ function validateSpacesInCtx( preRequiredData, a, b, openOrClose ) {
 
 function checkSpaces( preRequiredData, tokens, parensData, firstTokenIndex ) {
   const { context } = preRequiredData
-  const openParenToken = tokens[ firstTokenIndex ]
+  const openParenToken = tokens[ firstTokenIndex ] || {}
   const tokenAfterOpen = tokens[ firstTokenIndex + 1 ]
 
   if (openParenToken.value !== `(`) return
@@ -52,12 +52,24 @@ function checkSpaces( preRequiredData, tokens, parensData, firstTokenIndex ) {
 
   a = openParenToken
   b = tokenAfterOpen
-  validateSpacesInCtx( preRequiredData, a, b, `undesirableSpaceStart`, `missingSpaceStart` )
+
+  validateSpacesInCtx( preRequiredData, a, b, `open` )
 
   b = Array.isArray( parensData ) ? parensData[ parensData.length - 1 ] : parensData
   b = context.getTokenAfter( b, { filter:token => token.value === `)` } )
   a = context.getTokenBefore( b )
-  validateSpacesInCtx( preRequiredData, a, b, `undesirableSpaceEnd`, `missingSpaceEnd` )
+  validateSpacesInCtx( preRequiredData, a, b, `close` )
+}
+
+
+function findParenIndex( tokens, startFrom=0 ) {
+  const max = tokens.length > 5 ? 5 : tokens.length
+
+  for (let i = startFrom;  i < max;  ++i) {
+    if (tokens[ i ].value != `(`) continue
+
+    return i
+  }
 }
 
 
@@ -72,4 +84,5 @@ module.exports = {
 
   validateSpacesInCtx,
   checkSpaces,
+  findParenIndex,
 }
