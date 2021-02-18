@@ -17,7 +17,7 @@ module.exports = {
       return {
         ArrowFunctionExpression( node ) {
           const tokens = context.getTokens( node )
-          const firstParenIndex = findTokenIndex( `(`, tokens, 0 )
+          const firstParenIndex = findTokenIndex( `(`, tokens, 0, 2 )
 
           checkSpaces(
             { context, code, insertSpaces },
@@ -174,8 +174,6 @@ module.exports = {
       fixable: `whitespace`,
     },
     create( context ) {
-      const code = context.getSourceCode()
-
       return {
         ForStatement( node ) {
           const tokens = context.getTokens( node )
