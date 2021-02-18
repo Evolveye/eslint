@@ -7,6 +7,7 @@ const testsNames = [
   `space-in-functions-parens`,
   `space-in-calls`,
   `space-in-loops-and-ifs`,
+  `double-spaces-in-for`,
 ]
 const testsDataset = testsNames.map( name => ({
   name,

@@ -30,11 +30,14 @@ if (arrow());
 
 for (const value of [ 1, 2, 3 ]);
 for (const value in {});
-for (let i = 0; i < 1; ++i);
+for (let i = 0;  i < 1;  ++i);
 
 while (false);
 
 //*
-class X { method( a, { c } ) {} }
+class X {
+  method1( a, { c } ) {}
+  method2({ c }) {}
+}
 
 // */

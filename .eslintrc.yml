@@ -18,9 +18,9 @@ parserOptions:
     jsx: true
     modules: true
 rules:
-  # custom/space-in-arrow-functions-parens:
-  #   - error
-  #   - never
+  custom/space-in-arrow-functions-parens:
+    - error
+    - never
   custom/space-in-functions-parens:
     - error
     - always
@@ -30,6 +30,8 @@ rules:
   custom/space-in-loops-and-ifs:
     - error
     - never
+  custom/double-spaces-in-for:
+    - error
 
   react/jsx-uses-vars:
     - error
@@ -157,3 +159,5 @@ rules:
     - never
   no-constant-condition:
     - off
+  no-return-await:
+    - error

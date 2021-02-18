@@ -1,13 +1,13 @@
 // See: https://astexplorer.net
 
-const { messages, checkSpaces, findParenIndex } = require( `./utils.js` )
+const { messagesForParens, messagesForSemi, checkSpaces, findTokenIndex } = require( `./utils.js` )
 
 module.exports = {
   "space-in-arrow-functions-parens": {
     meta: {
       docs: { description:`` },
       schema: [ { "enum":[ `always`, `never` ] } ],
-      messages,
+      messages: messagesForParens,
       fixable: `whitespace`,
     },
     create( context ) {
@@ -17,7 +17,7 @@ module.exports = {
       return {
         ArrowFunctionExpression( node ) {
           const tokens = context.getTokens( node )
-          const firstParenIndex = findParenIndex( tokens, 0 )
+          const firstParenIndex = findTokenIndex( `(`, tokens, 0 )
 
           checkSpaces(
             { context, code, insertSpaces },
@@ -35,7 +35,7 @@ module.exports = {
     meta: {
       docs: { description:`` },
       schema: [ { "enum":[ `always`, `never` ] } ],
-      messages,
+      messages: messagesForParens,
       fixable: `whitespace`,
     },
     create( context ) {
@@ -45,7 +45,7 @@ module.exports = {
       return {
         FunctionDeclaration( node ) {
           const tokens = context.getTokens( node )
-          const firstParenIndex = findParenIndex( tokens, 2 )
+          const firstParenIndex = findTokenIndex( `(`, tokens, 2 )
 
           checkSpaces(
             { context, code, insertSpaces },
@@ -57,7 +57,7 @@ module.exports = {
 
         FunctionExpression( node ) {
           const tokens = context.getTokens( node )
-          const firstParenIndex = findParenIndex( tokens, 0 )
+          const firstParenIndex = findTokenIndex( `(`, tokens, 0 )
 
           checkSpaces(
             { context, code, insertSpaces },
@@ -75,7 +75,7 @@ module.exports = {
     meta: {
       docs: { description:`` },
       schema: [ { "enum":[ `always`, `never` ] } ],
-      messages,
+      messages: messagesForParens,
       fixable: `whitespace`,
     },
     create( context ) {
@@ -85,7 +85,7 @@ module.exports = {
       return {
         CallExpression( node ) {
           const tokens = context.getTokens( node )
-          const firstParenIndex = findParenIndex( tokens, 1 )
+          const firstParenIndex = findTokenIndex( `(`, tokens, 1 )
 
           checkSpaces(
             { context, code, insertSpaces, parensData:node.arguments },
@@ -103,7 +103,7 @@ module.exports = {
     meta: {
       docs: { description:`` },
       schema: [ { "enum":[ `always`, `never` ] } ],
-      messages,
+      messages: messagesForParens,
       fixable: `whitespace`,
     },
     create( context ) {
@@ -122,7 +122,7 @@ module.exports = {
 
         ForOfStatement( node ) {
           const tokens = context.getTokens( node )
-          const firstParenIndex = findParenIndex( tokens, 1 )
+          const firstParenIndex = findTokenIndex( `(`, tokens, 1 )
 
           checkSpaces(
             { context, code, insertSpaces },
@@ -143,7 +143,7 @@ module.exports = {
 
         ForStatement( node ) {
           const tokens = context.getTokens( node )
-          const firstParenIndex = findParenIndex( tokens, 1 )
+          const firstParenIndex = findTokenIndex( `(`, tokens, 1 )
 
           checkSpaces(
             { context, code, insertSpaces },
@@ -160,6 +160,78 @@ module.exports = {
             node.test,
             1,
           )
+        },
+      }
+    },
+  },
+
+
+  "double-spaces-in-for": {
+    meta: {
+      docs: { description:`` },
+      schema: [ { "enum":[ `always`, `never` ] } ],
+      messages: messagesForSemi,
+      fixable: `whitespace`,
+    },
+    create( context ) {
+      const code = context.getSourceCode()
+
+      return {
+        ForStatement( node ) {
+          const tokens = context.getTokens( node )
+          const semi1Index = findTokenIndex( `;`, tokens, 2, Infinity )
+
+          if (!semi1Index) return
+
+          const semi1 = tokens[ semi1Index ]
+          const tokenAfterSemi1 = context.getTokenAfter( semi1 )
+
+          if (tokenAfterSemi1.value === `;`) return
+
+          const spacesAfterSemi1 = tokenAfterSemi1.range[ 0 ] - semi1.range[ 1 ]
+
+          const semi2 = context.getTokenAfter( semi1, {
+            filter: ({ value }) => value === `;`,
+          } )
+          const tokenAfterSemi2 = context.getTokenAfter( semi2 )
+
+          if (spacesAfterSemi1 < 2 && (semi1Index > 2 || tokenAfterSemi2.value !== `)`)) {
+            const locEnd = tokenAfterSemi1.loc.start === semi1.loc.end
+              ? tokenAfterSemi1.loc.start + 1
+              : tokenAfterSemi1.loc.start
+
+            context.report({
+              loc: {
+                start: semi1.loc.end,
+                end: locEnd,
+              },
+              messageId: `missingSpaceAfterFirstSemi`,
+              fix: fixer => fixer.insertTextAfterRange(
+                semi1.range, ` `.repeat( 2 - spacesAfterSemi1 ),
+              ),
+            })
+          }
+
+          if (tokenAfterSemi2.value === `)`) return
+
+          const spacesAfterSemi2 = tokenAfterSemi2.range[ 0 ] - semi2.range[ 1 ]
+
+          if (spacesAfterSemi2 < 2) {
+            const locEnd = tokenAfterSemi2.loc.start === semi2.loc.end
+              ? tokenAfterSemi2.loc.start + 1
+              : tokenAfterSemi2.loc.start
+
+            context.report({
+              loc: {
+                start: semi2.loc.end,
+                end: locEnd,
+              },
+              messageId: `missingSpaceAfterSecondSemi`,
+              fix: fixer => fixer.insertTextAfterRange(
+                semi2.range, ` `.repeat( 2 - spacesAfterSemi2 ),
+              ),
+            })
+          }
         },
       }
     },

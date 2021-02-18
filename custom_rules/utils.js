@@ -62,11 +62,13 @@ function checkSpaces( preRequiredData, tokens, parensData, firstTokenIndex ) {
 }
 
 
-function findParenIndex( tokens, startFrom=0 ) {
-  const max = tokens.length > 5 ? 5 : tokens.length
+function findTokenIndex( tokenValue, tokens, startFrom=0, maxSearchIndex=(startFrom + 5) ) {
+  const max = tokens.length > maxSearchIndex
+    ? maxSearchIndex
+    : tokens.length
 
   for (let i = startFrom;  i < max;  ++i) {
-    if (tokens[ i ].value != `(`) continue
+    if (tokens[ i ].value != tokenValue) continue
 
     return i
   }
@@ -74,15 +76,19 @@ function findParenIndex( tokens, startFrom=0 ) {
 
 
 module.exports = {
-  messages: {
+  messagesForParens: {
     missingSpaceStart: `Missing space after parens open`,
     missingSpaceEnd: `Missing space before parens close`,
     undesirableSpaceStart: `Undesirable space after parens open`,
     undesirableSpaceEnd: `Undesirable space before parens close`,
     undesirableSpaceInParens: `Undesirable space between parens without params`,
   },
+  messagesForSemi: {
+    missingSpaceAfterFirstSemi: `Missing spaces (2 or more) after first loop semicolon`,
+    missingSpaceAfterSecondSemi: `Missing spaces (2 or more) after second loop semicolon`,
+  },
 
   validateSpacesInCtx,
   checkSpaces,
-  findParenIndex,
+  findTokenIndex,
 }
