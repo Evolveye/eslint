@@ -1,6 +1,6 @@
 {
-	"name": "eslint-plugin-custom",
-	"version": "0.0.1",
+	"name": "eslint-plugin-spaces",
+	"version": "0.1.0",
 	"main": "index.js",
 	"devDependencies": {
 		"eslint": "^7.20.0"
