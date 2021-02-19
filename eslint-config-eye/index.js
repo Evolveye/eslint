@@ -69,5 +69,6 @@ module.exports = {
     "template-tag-spacing": [ `error`, `never` ],
     "no-constant-condition": [ `off` ],
     "no-return-await": [ `error` ],
+    "arrow-parens": [ `error`, `as-needed` ],
   },
 }
