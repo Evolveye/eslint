@@ -2,6 +2,9 @@
 	"name": "eslint-plugin-spaces",
 	"version": "0.1.0",
 	"main": "index.js",
+  "scripts": {
+    "test": "node ./tests/index.js"
+  },
 	"devDependencies": {
 		"eslint": "^7.20.0"
 	},

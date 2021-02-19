@@ -1,6 +1,11 @@
 // See: https://astexplorer.net
 
-const { messagesForParens, messagesForSemi, checkSpaces, findTokenIndex } = require( `./utils.js` )
+const {
+  messagesForParens,
+  messagesForSemi,
+  checkSpaces,
+  findTokenIndex,
+} = require( `./utils.js` )
 
 module.exports = {
   "space-in-arrow-functions-parens": {

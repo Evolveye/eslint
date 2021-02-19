@@ -10,7 +10,7 @@ function validateSpacesInCtx( preRequiredData, a, b, openOrClose ) {
         end: b.loc.start,
       },
       messageId: undesirableErr,
-      fix: fixer => fixer.removeRange( [ a.range[ 1 ], b.range[ 0 ] ] ),
+      fix: fixer => fixer.removeRange([ a.range[ 1 ], b.range[ 0 ] ]),
     })
   } else if (insertSpaces) {
     context.report({
@@ -35,10 +35,10 @@ function checkSpaces( preRequiredData, tokens, parensData, firstTokenIndex ) {
         end: tokenAfterOpen.loc.start,
       },
       messageId: `undesirableSpaceInParens`,
-      fix: fixer => fixer.removeRange( [
+      fix: fixer => fixer.removeRange([
         openParenToken.range[ 1 ],
         tokenAfterOpen.range[ 0 ],
-      ] ),
+      ]),
     })
 
     return
