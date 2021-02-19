@@ -1,0 +1,11 @@
+{
+	"name": "eslint-plugin-custom",
+	"version": "0.0.1",
+	"main": "index.js",
+	"devDependencies": {
+		"eslint": "^7.20.0"
+	},
+	"engines": {
+		"node": ">=0.10.0"
+	}
+}
