@@ -1,10 +1,28 @@
 {
   "name": "eslint-config-eye",
   "version": "1.0.0",
-  "description": "",
+  "description": "Evolveye's Eslint config",
   "main": "index.js",
-  "author": "",
+  "author": "Paweł Stolarski",
   "license": "ISC",
+  "homepage": "https://github.com/Evolveye/eslint/tree/master/eslint-config-eye#readme",
+  "keywords": [
+    "code formatting",
+    "code style",
+    "formatting",
+    "style",
+    "code",
+    "spaces",
+    "eslint",
+    "eslintconfig",
+    "config",
+    "es6",
+    "es2020",
+    "es2021",
+    "react",
+    "jsx",
+    "evolveye"
+  ],
   "peerDependencies": {
     "eslint": "^7.20.0"
   },
