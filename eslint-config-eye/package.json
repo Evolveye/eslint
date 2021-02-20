@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-eye",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Evolveye's Eslint config",
   "main": "index.js",
   "author": "Paweł Stolarski",
@@ -32,6 +32,6 @@
     "@babel/preset-env": "^7.12.17",
     "@babel/preset-react": "^7.12.13",
     "eslint-plugin-react": "^7.22.0",
-    "eslint-plugin-spaces": "file:..\\eslint-plugin-spaces"
+    "eslint-plugin-spaces": "^0.1.0"
   }
 }
