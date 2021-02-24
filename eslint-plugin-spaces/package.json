@@ -1,26 +1,26 @@
 {
 	"name": "eslint-plugin-spaces",
-	"version": "0.1.0",
-  "description": "Plugin to Eslint which add more spaces options",
-  "main": "index.js",
-  "author": "Paweł Stolarski",
-  "license": "ISC",
-  "homepage": "https://github.com/Evolveye/eslint/tree/master/eslint-plugin-spaces#readme",
-  "keywords": [
-    "code formatting",
-    "code style",
-    "formatting",
-    "style",
-    "code",
-    "spaces",
-    "eslint",
-    "eslintplugin",
-    "plugin",
-    "es6"
-  ],
-  "scripts": {
-    "test": "node ./tests/index.js"
-  },
+	"version": "0.1.1",
+	"description": "Plugin to Eslint which add more spaces options",
+	"main": "index.js",
+	"author": "Paweł Stolarski",
+	"license": "ISC",
+	"homepage": "https://github.com/Evolveye/eslint/tree/master/eslint-plugin-spaces#readme",
+	"keywords": [
+		"code formatting",
+		"code style",
+		"formatting",
+		"style",
+		"code",
+		"spaces",
+		"eslint",
+		"eslintplugin",
+		"plugin",
+		"es6"
+	],
+	"scripts": {
+		"test": "node ./tests/index.js"
+	},
 	"devDependencies": {
 		"eslint": "^7.20.0"
 	},

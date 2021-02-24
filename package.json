@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "eslint": "^7.20.0",
-    "eslint-config-eye": "file:eslint-config-eye"
+    "eslint-config-eye": "file:eslint-config-eye",
+    "eslint-plugin-eye": "file:eslint-plugin-eye"
   }
 }

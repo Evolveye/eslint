@@ -28,7 +28,7 @@ fnArr([ 3 ])
 fn( 1, 2, { c:3 } )
 fn( 1, 2, something[ 2 ] )
 something.method( 123 )
-obj.status(1 ).json(  { a:1 })
+obj.status( 1 ).json({ a:1 })
 
 
 
