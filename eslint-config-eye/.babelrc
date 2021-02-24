@@ -1,5 +1,8 @@
 {
-  "plugins": [ "@babel/plugin-proposal-class-properties" ],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-syntax-top-level-await"
+  ],
   "presets": [
     "@babel/preset-react",
     [ "@babel/env", { "targets":{ "node":"15" } } ]

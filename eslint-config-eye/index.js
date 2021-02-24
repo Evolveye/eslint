@@ -1,3 +1,8 @@
+//
+// TODO rule for spacing after variable creation
+// TODO temove space before/after default param value
+//
+
 module.exports = {
   env: {
     es2021: true,
@@ -37,7 +42,7 @@ module.exports = {
     "react/jsx-first-prop-new-line": [ `error`, `multiline-multiprop` ],
     "react/jsx-fragments": [ `error`, `syntax` ],
     "react/jsx-no-useless-fragment": [ `error` ],
-    "react/jsx-max-props-per-line": [ `error`, { maximum:2, when:`always` } ],
+    // "react/jsx-max-props-per-line": [ `error`, { maximum:2, when:`always` } ],
     "react/jsx-no-target-blank": [ `error`, { enforceDynamicLinks:`always` } ],
     "react/jsx-one-expression-per-line": [ `error`, { allow:`single-child` } ],
     "react/jsx-props-no-multi-spaces": [ `error` ],
@@ -54,7 +59,7 @@ module.exports = {
     "space-before-function-paren": [ `error`, `never` ],
     "space-before-blocks": [ `error`, `always` ],
     "func-call-spacing": [ `error`, `never` ],
-    "implicit-arrow-linebreak": [ `error`, `beside` ],
+    // "implicit-arrow-linebreak": [ `error`, `beside` ],
     "key-spacing": [ `error`, { singleLine:{ afterColon:false } } ],
     "array-bracket-spacing": [ `error`, `always` ],
     "array-bracket-newline": [ `error`, { multiline:true } ],
@@ -70,5 +75,8 @@ module.exports = {
     "no-constant-condition": [ `off` ],
     "no-return-await": [ `error` ],
     "arrow-parens": [ `error`, `as-needed` ],
+    "keyword-spacing": [ `error`, { before:true, after:true } ],
+    "comma-spacing": [ `error`, { before:false, after:true } ],
+    "space-infix-ops": [ `error` ],
   },
 }
