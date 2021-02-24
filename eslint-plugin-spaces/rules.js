@@ -90,7 +90,9 @@ module.exports = {
       return {
         CallExpression( node ) {
           const tokens = context.getTokens( node )
-          const firstParenIndex = findTokenIndex( `(`, tokens, 1 )
+          const firstParenIndex = node.callee?.type === `MemberExpression`
+            ? findTokenIndex( `(`, tokens, tokens.indexOf( context.getTokenAfter( node.callee ) ) )
+            : findTokenIndex( `(`, tokens, 1 )
 
           checkSpaces(
             { context, code, insertSpaces, parensData:node.arguments },

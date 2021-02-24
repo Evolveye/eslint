@@ -1,9 +1,16 @@
+/*
+obj.methodA( 1 ).methodB({ b })
+*/
 module.exports = {
   valid: [
-    { code:`fn()` },
-    { code:`fn({ c:3 })` },
-    { code:`fn( 1, 2, { c:3 } )` },
-    { code:`fn(  1, 2, something[ 2 ] )` },
+    // { code:`fn()` },
+    // { code:`fn({ c:3 })` },
+    // { code:`fn( 1, 2, { c:3 } )` },
+    // { code:`fn(  1, 2, something[ 2 ] )` },
+    // { code:`obj.method( 404 )` },
+    // { code:`obj.methodA( 1 ).methodB( 2 )` },
+    { code:`obj.methodA( 1 ).methodB({ b })` },
+    // { code:`obj.methodA({ a }).methodB({ b })` },
   ],
   invalid: [
     {
@@ -15,6 +22,11 @@ module.exports = {
       errors: [ { messageId:`undesirableSpaceInParens` } ],
       code: `fn(   )`,
       output: `fn()`,
+    },
+    {
+      errors: [ { messageId:`undesirableSpaceInParens` } ],
+      code: `obj.method(   )`,
+      output: `obj.method()`,
     },
 
 
@@ -43,6 +55,11 @@ module.exports = {
       errors: [ { messageId:`missingSpaceStart` } ],
       code: `fn(a, { c } )`,
       output: `fn( a, { c } )`,
+    },
+    {
+      errors: [ { messageId:`missingSpaceStart` } ],
+      code: `obj.method(a, { c } )`,
+      output: `obj.method( a, { c } )`,
     },
 
 
@@ -75,6 +92,12 @@ module.exports = {
       errors: [ { messageId:`undesirableSpaceStart` } ],
       code: `fn( a, { c })`,
       output: `fn(a, { c })`,
+      options: [ `never` ],
+    },
+    {
+      errors: [ { messageId:`undesirableSpaceStart` } ],
+      code: `obj.method( a, { c })`,
+      output: `obj.method(a, { c })`,
       options: [ `never` ],
     },
   ],

@@ -11,7 +11,8 @@ const arrow_params = ({ abc },  a) => true
 const arrow_obj = ([ abc ]) => true
 const arrow_empty = () => true
 const arrow_var = a => true
-const arrow = (a, b) => true
+const arrow = (a, b) =>
+  something.method( 123 )
 
 
 
@@ -27,6 +28,7 @@ fnArr([ 3 ])
 fn( 1, 2, { c:3 } )
 fn( 1, 2, something[ 2 ] )
 something.method( 123 )
+obj.status(1 ).json(  { a:1 })
 
 
 
