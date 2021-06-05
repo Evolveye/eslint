@@ -1,7 +1,7 @@
 function validateSpacesInCtx( preRequiredData, a, b, openOrClose ) {
   const { context, code, insertSpaces } = preRequiredData
-  const undesirableErr = `undesirableSpace${openOrClose === `open` ? `Start`: `End`}`
-  const missingErr = `missingSpace${openOrClose === `open` ? `Start`: `End`}`
+  const undesirableErr = `undesirableSpace${openOrClose === `open` ? `Start` : `End`}`
+  const missingErr = `missingSpace${openOrClose === `open` ? `Start` : `End`}`
 
   if (code.isSpaceBetween( a, b )) {
     if (!insertSpaces) context.report({
@@ -23,6 +23,8 @@ function validateSpacesInCtx( preRequiredData, a, b, openOrClose ) {
 
 
 function checkSpaces( preRequiredData, tokens, parensData, firstTokenIndex ) {
+  if (!parensData) return
+
   const { context } = preRequiredData
   const openParenToken = tokens[ firstTokenIndex ] || {}
   const tokenAfterOpen = tokens[ firstTokenIndex + 1 ]
@@ -63,7 +65,7 @@ function checkSpaces( preRequiredData, tokens, parensData, firstTokenIndex ) {
 }
 
 
-function findTokenIndex( tokenValue, tokens, startFrom=0, maxSearchIndex=(startFrom + 5) ) {
+function findTokenIndex( tokenValue, tokens, startFrom = 0, maxSearchIndex = (startFrom + 5) ) {
   const max = tokens.length > maxSearchIndex
     ? maxSearchIndex
     : tokens.length

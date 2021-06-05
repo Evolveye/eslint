@@ -1,5 +1,6 @@
 module.exports = {
   valid: [
+    { code:`for (let i;  (i = /reg/.exec( "" )););` },
     { code:`for ( let i = 0;  i < 1;  ++i );` },
     { code:`for (let i = 0;   i < 1;   ++i);` },
     { code:`for (let i = 0;  i < 1;  ++i);` },

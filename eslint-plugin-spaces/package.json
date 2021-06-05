@@ -1,6 +1,6 @@
 {
 	"name": "eslint-plugin-spaces",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Plugin to Eslint which add more spaces options",
 	"main": "index.js",
 	"author": "Paweł Stolarski",
