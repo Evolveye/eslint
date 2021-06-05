@@ -1,6 +1,7 @@
 //
 // TODO rule for spacing after variable creation
 // TODO temove space before/after default param value
+// TODO Add spaces to constructors
 //
 
 module.exports = {
@@ -33,6 +34,7 @@ module.exports = {
     "spaces/space-in-loops-and-ifs": [ `error`, `never` ],
     "spaces/double-spaces-in-for": [ `error` ],
 
+    "react/jsx-indent": [ `error`, 2 ],
     "react/jsx-uses-vars": [ `error` ],
     "react/jsx-uses-react": [ `error` ],
     "react/jsx-closing-bracket-location": [ `error`, `line-aligned` ],
@@ -44,39 +46,42 @@ module.exports = {
     "react/jsx-no-useless-fragment": [ `error` ],
     // "react/jsx-max-props-per-line": [ `error`, { maximum:2, when:`always` } ],
     "react/jsx-no-target-blank": [ `error`, { enforceDynamicLinks:`always` } ],
-    "react/jsx-one-expression-per-line": [ `error`, { allow:`single-child` } ],
     "react/jsx-props-no-multi-spaces": [ `error` ],
-    "react/jsx-space-before-closing": [ `error`, `always` ],
+    "react/jsx-tag-spacing": [ `error`, { closingSlash:`never`, beforeSelfClosing:`always`, afterOpening:`never`, beforeClosing:`never` } ],
     "react/jsx-wrap-multilines": [ `error` ],
 
-    "indent": [ `error`, 2 ],
+    "indent": [ `error`, 2, { SwitchCase:1 } ],
     "linebreak-style": [ `error`, `windows` ],
     "quotes": [ `error`, `backtick` ],
     "semi": [ `error`, `never` ],
     "object-curly-spacing": [ `error`, `always` ],
-    "prefer-template": [ `error` ],
-    "no-unused-vars": [ `warn` ],
+    "prefer-template": [ `off` ],
     "space-before-function-paren": [ `error`, `never` ],
     "space-before-blocks": [ `error`, `always` ],
     "func-call-spacing": [ `error`, `never` ],
     // "implicit-arrow-linebreak": [ `error`, `beside` ],
-    "key-spacing": [ `error`, { singleLine:{ afterColon:false } } ],
+    "key-spacing": [ `error`, { singleLine:{ afterColon:false }, multiLine:{ mode:`minimum` } } ],
     "array-bracket-spacing": [ `error`, `always` ],
     "array-bracket-newline": [ `error`, { multiline:true } ],
     "block-spacing": [ `error` ],
-    "no-whitespace-before-property": [ `error` ],
     "space-unary-ops": [ `error`, { words:true, nonwords:false } ],
-    "spaced-comment": [ `error`, `always` ],
+    "spaced-comment": [ `error`, `always`, { block:{ exceptions:[ `\\` ] } } ],
     "comma-dangle": [ `error`, `always-multiline` ],
     "eol-last": [ `error`, `always` ],
     "computed-property-spacing": [ `error`, `always`, { enforceForClassMembers:false } ],
     "arrow-spacing": [ `error`, { before:true, after:true } ],
     "template-tag-spacing": [ `error`, `never` ],
-    "no-constant-condition": [ `off` ],
-    "no-return-await": [ `error` ],
     "arrow-parens": [ `error`, `as-needed` ],
     "keyword-spacing": [ `error`, { before:true, after:true } ],
     "comma-spacing": [ `error`, { before:false, after:true } ],
     "space-infix-ops": [ `error` ],
+    "no-constant-condition": [ `off` ],
+    "no-return-await": [ `error` ],
+    "no-unused-vars": [ `warn` ],
+    "no-whitespace-before-property": [ `error` ],
+    "no-compare-neg-zero": [ `off` ],
+    "no-unreachable": [ `off` ],
+    "no-async-promise-executor": [ `off` ],
+    "no-fallthrough": [ `off` ],
   },
 }
