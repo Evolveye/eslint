@@ -38,6 +38,7 @@ if (arrow());
 for (const value of [ 1, 2, 3 ]);
 for (const value in {});
 for (let i = 0;  i < 1;  ++i);
+for (let i;  (i = /reg/.exec( `` )););
 
 while (false);
 
@@ -48,3 +49,21 @@ class X {
   method2({ c }) {}
   method3 = a => {}
 }
+
+
+
+const jsx = (
+  <article>
+    <span a={1} b={2} c={3} d={4} e={5} />
+    <span
+      a={1}
+      b={2}
+      c={3}
+      d={4}
+      e={5}
+    >
+      abc
+    </span>
+    <span>abc {123} def</span>
+  </article>
+)
