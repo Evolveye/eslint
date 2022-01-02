@@ -1,8 +1,10 @@
+
+
 const something = []
 const obj = {
   fnExp1() {},
-  fnExp2( a ) {},
-  fnExp3: a => {},
+  fnExp2<T>( a:T ) {},
+  fnExp3: a => this,
 }
 
 
@@ -12,7 +14,7 @@ const arrow_obj = ([ abc ]) => true
 const arrow_empty = () => true
 const arrow_var = a => true
 const arrow = (a, b) =>
-  something.method( 123 )
+  obj.fnExp3( 123 ) ?? true
 
 
 
@@ -27,13 +29,13 @@ fnObj({ c:3 })
 fnArr([ 3 ])
 fn( 1, 2, { c:3 } )
 fn( 1, 2, something[ 2 ] )
-something.method( 123 )
-obj.status( 1 ).json({ a:1 })
+obj.fnExp2( 123 )
+obj.fnExp3( 1 ).fnExp2({ a:1 })
 
 
 
-if (something[ 0 ]);
-if (arrow());
+if (something[ 0 ]) { /* */ }
+if (!arrow( 1, 2 )) { /* */ }
 
 for (const value of [ 1, 2, 3 ]);
 for (const value in {});
@@ -51,19 +53,19 @@ class X {
 }
 
 
-
 const jsx = (
   <article>
-    <span a={1} b={2} c={3} d={4} e={5} />
+    <span about="" accessKey="" aria-activedescendant="" />
     <span
-      a={1}
-      b={2}
-      c={3}
-      d={4}
-      e={5}
+      about=""
+      accessKey=""
+      aria-activedescendant=""
     >
       abc
     </span>
     <span>abc {123} def</span>
   </article>
 )
+
+
+const instance = new obj.fnExp2(1 )

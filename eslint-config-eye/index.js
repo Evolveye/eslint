@@ -11,10 +11,11 @@ module.exports = {
     browser: true,
   },
   extends: [ `eslint:recommended` ],
-  parser: `@babel/eslint-parser`,
+  parser: `@typescript-eslint/parser`,
   plugins: [
     `react`,
     `spaces`,
+    `@typescript-eslint`,
   ],
   parserOptions: {
     ecmaVersion: 12,
@@ -28,6 +29,11 @@ module.exports = {
     },
   },
   rules: {
+    "@typescript-eslint/explicit-module-boundary-types": [ `off` ],
+    "@typescript-eslint/no-non-null-assertion": [ `off` ],
+    "@typescript-eslint/no-unused-vars": [ `warn` ],
+    "@typescript-eslint/no-redeclare": [ `off` ],
+
     "spaces/space-in-arrow-functions-parens": [ `error`, `never` ],
     "spaces/space-in-functions-parens": [ `error`, `always` ],
     "spaces/space-in-calls": [ `error`, `always` ],
@@ -51,7 +57,7 @@ module.exports = {
     "react/jsx-wrap-multilines": [ `error` ],
 
     "indent": [ `error`, 2, { SwitchCase:1 } ],
-    "linebreak-style": [ `error`, `windows` ],
+    "linebreak-style": [ `off` ],
     "quotes": [ `error`, `backtick` ],
     "semi": [ `error`, `never` ],
     "object-curly-spacing": [ `error`, `always` ],
@@ -75,9 +81,10 @@ module.exports = {
     "keyword-spacing": [ `error`, { before:true, after:true } ],
     "comma-spacing": [ `error`, { before:false, after:true } ],
     "space-infix-ops": [ `error` ],
+    "no-unused-vars": [ `off` ],
+    "no-redeclare": [ `off` ],
     "no-constant-condition": [ `off` ],
     "no-return-await": [ `error` ],
-    "no-unused-vars": [ `warn` ],
     "no-whitespace-before-property": [ `error` ],
     "no-compare-neg-zero": [ `off` ],
     "no-unreachable": [ `off` ],
