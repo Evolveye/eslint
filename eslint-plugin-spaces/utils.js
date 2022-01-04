@@ -1,17 +1,51 @@
+/** @typedef {import("eslint").Rule.RuleContext} RuleContext */
+/** @typedef {import("eslint").Rule.RuleModule} RuleModule */
+/** @typedef {import("eslint").Rule.Node} Node */
+/** @typedef {import("eslint").AST.Token} Token */
+/** @typedef {import("eslint").SourceCode} SourceCode */
+
+/**
+ * @typedef {object} PreRequiredData
+ * @property {RuleContext} context
+ * @property {SourceCode} code
+ * @property {boolean} insertSpaces
+ * @property {Node} parensData
+ */
+
+
+/**
+ * @param {PreRequiredData} preRequiredData
+ * @param {Token} a
+ * @param {Token} b
+ * @param {"open" | "close"} openOrClose
+ */
 function validateSpacesInCtx( preRequiredData, a, b, openOrClose ) {
   const { context, code, insertSpaces } = preRequiredData
   const undesirableErr = `undesirableSpace${openOrClose === `open` ? `Start` : `End`}`
   const missingErr = `missingSpace${openOrClose === `open` ? `Start` : `End`}`
 
   if (code.isSpaceBetween( a, b )) {
-    if (!insertSpaces) context.report({
-      loc: {
-        start: a.loc.end,
-        end: b.loc.start,
-      },
-      messageId: undesirableErr,
-      fix: fixer => fixer.removeRange([ a.range[ 1 ], b.range[ 0 ] ]),
-    })
+    if (!insertSpaces) {
+      context.report({
+        loc: {
+          start: a.loc.end,
+          end: b.loc.start,
+        },
+        messageId: undesirableErr,
+        fix: fixer => fixer.removeRange([ a.range[ 1 ], b.range[ 0 ] ]),
+      })
+    } else {
+      if (a.loc.end.column < b.loc.start.column - 1) {
+        context.report({
+          loc: {
+            start: { line:a.loc.end.line, column:a.loc.end.column + 1 },
+            end: b.loc.start,
+          },
+          messageId: undesirableErr,
+          fix: fixer => fixer.removeRange([ a.range[ 1 ] + 1, b.range[ 0 ] ]),
+        })
+      }
+    }
   } else if (insertSpaces) {
     context.report({
       loc: openOrClose === `open` ? a.loc : b.loc,
@@ -22,14 +56,20 @@ function validateSpacesInCtx( preRequiredData, a, b, openOrClose ) {
 }
 
 
+/**
+ * @param {PreRequiredData} preRequiredData
+ * @param {Token[]} tokens
+ * @param {Node} parensData
+ * @param {number} firstTokenIndex
+ */
 function checkSpaces( preRequiredData, tokens, parensData, firstTokenIndex ) {
   if (!parensData) return
 
   const { context } = preRequiredData
-  const openParenToken = tokens[ firstTokenIndex ] || {}
+  const openParenToken = tokens[ firstTokenIndex ]
   const tokenAfterOpen = tokens[ firstTokenIndex + 1 ]
 
-  if (openParenToken.value !== `(`) return
+  if (!openParenToken || openParenToken.value !== `(`) return
   if (tokenAfterOpen.value === `)`) {
     if (openParenToken.range[ 1 ] != tokenAfterOpen.range[ 0 ]) context.report({
       loc: {
@@ -47,15 +87,19 @@ function checkSpaces( preRequiredData, tokens, parensData, firstTokenIndex ) {
   }
 
   const paramASTTypes = [ `ObjectExpression`, `ObjectPattern`, `ArrayExpression`, `ArrayPattern` ]
-  if (Array.isArray( parensData ) && parensData.length == 1 && paramASTTypes.includes( parensData[ 0 ].type )) {
-    preRequiredData.insertSpaces = false
+  if (Array.isArray( parensData )) {
+    if (parensData.length == 1 && paramASTTypes.includes( parensData[ 0 ].type )) {
+      preRequiredData.insertSpaces = false
+    }
   }
+  // if (Array.isArray( parensData ) && parensData.length == 1 && paramASTTypes.includes( parensData[ 0 ].type )) {
+  //   preRequiredData.insertSpaces = false
+  // }
 
   let a, b
 
   a = openParenToken
   b = tokenAfterOpen
-
   validateSpacesInCtx( preRequiredData, a, b, `open` )
 
   b = Array.isArray( parensData ) ? parensData[ parensData.length - 1 ] : parensData

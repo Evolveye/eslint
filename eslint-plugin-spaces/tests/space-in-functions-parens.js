@@ -3,7 +3,7 @@ module.exports = {
     { code:`function fnObj() {}` },
     { code:`function fnObj( c ) {}` },
     { code:`function fnObj({ c }) {}` },
-    { code:`function * fnObj(   c ) {}` },
+    { code:`function * fnObj( c ) {}` },
     { code:`class X { method() {} }` },
     { code:`class X { method( c ) {} }` },
     { code:`class X { method({ c }) {} }` },

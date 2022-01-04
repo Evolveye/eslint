@@ -1,5 +1,7 @@
 // See: https://astexplorer.net
 
+/** @typedef {import("eslint").Rule.RuleModule} RuleModule */
+
 const {
   messagesForParens,
   messagesForSemi,
@@ -7,6 +9,7 @@ const {
   findTokenIndex,
 } = require( `./utils.js` )
 
+/** @type {Record<string,RuleModule>} */
 module.exports = {
   "space-in-arrow-functions-parens": {
     meta: {

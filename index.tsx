@@ -1,5 +1,3 @@
-
-
 const something = []
 const obj = {
   fnExp1() {},
@@ -18,16 +16,23 @@ const arrow = (a, b) =>
 
 
 
+class ClassA { constructor( a ) {} }
+class ClassB {}
+
+
+
 function * fnGen( a, b, { c } ) {}
 function fnObj({ c }) {}
 function fnArr([ a ]) {}
 function fn( a, b, { c } ) {}
+function fnNothing() {}
 
 
 
 fnObj({ c:3 })
 fnArr([ 3 ])
 fn( 1, 2, { c:3 } )
+fnNothing()
 fn( 1, 2, something[ 2 ] )
 obj.fnExp2( 123 )
 obj.fnExp3( 1 ).fnExp2({ a:1 })
@@ -53,6 +58,7 @@ class X {
 }
 
 
+
 const jsx = (
   <article>
     <span about="" accessKey="" aria-activedescendant="" />
@@ -68,4 +74,7 @@ const jsx = (
 )
 
 
-const instance = new obj.fnExp2( 1 )
+
+const instanceA = new ClassA( 1 )
+const instanceB = new ClassB()
+const instanceC = new obj.fnExp2( 1 )

@@ -3,7 +3,7 @@ module.exports = {
     { code:`const arrow_obj = a => true` },
     { code:`const arrow_obj = () => true` },
     { code:`const arrow_obj = ({ abc }) => true` },
-    { code:`const arrow_obj = (  { abc }, a   ) => true` },
+    { code:`const arrow_obj = ( { abc }, a ) => true` },
   ],
   invalid: [
     {
