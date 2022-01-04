@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-eye",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Evolveye's Eslint config",
   "main": "index.js",
   "author": "Paweł Stolarski",
