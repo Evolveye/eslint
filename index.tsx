@@ -68,4 +68,4 @@ const jsx = (
 )
 
 
-const instance = new obj.fnExp2(1 )
+const instance = new obj.fnExp2( 1 )

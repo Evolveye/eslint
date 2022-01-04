@@ -36,6 +36,7 @@ module.exports = {
 
     "spaces/space-in-arrow-functions-parens": [ `error`, `never` ],
     "spaces/space-in-functions-parens": [ `error`, `always` ],
+    "spaces/space-in-constructors": [ `error`, `always` ],
     "spaces/space-in-calls": [ `error`, `always` ],
     "spaces/space-in-loops-and-ifs": [ `error`, `never` ],
     "spaces/double-spaces-in-for": [ `error` ],

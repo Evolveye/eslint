@@ -16,6 +16,6 @@
   "devDependencies": {
     "eslint": "^7.20.0",
     "eslint-config-eye": "file:eslint-config-eye",
-    "eslint-plugin-eye": "file:eslint-plugin-eye"
+    "eslint-plugin-spaces": "file:eslint-plugin-spaces"
   }
 }

@@ -106,6 +106,36 @@ module.exports = {
   },
 
 
+  "space-in-constructors": {
+    meta: {
+      docs: { description:`` },
+      schema: [ { "enum":[ `always`, `never` ] } ],
+      messages: messagesForParens,
+      fixable: `whitespace`,
+    },
+    create( context ) {
+      const code = context.getSourceCode()
+      const insertSpaces = context.options[ 0 ] === `never` ? false : true
+
+      return {
+        NewExpression( node ) {
+          const tokens = context.getTokens( node )
+          const firstParenIndex = node.callee?.type === `MemberExpression`
+            ? findTokenIndex( `(`, tokens, tokens.indexOf( context.getTokenAfter( node.callee ) ) )
+            : findTokenIndex( `(`, tokens, 1 )
+
+          checkSpaces(
+            { context, code, insertSpaces, parensData:node.arguments },
+            tokens,
+            node.arguments,
+            firstParenIndex,
+          )
+        },
+      }
+    },
+  },
+
+
   "space-in-loops-and-ifs": {
     meta: {
       docs: { description:`` },
