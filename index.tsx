@@ -1,8 +1,32 @@
+export type Type = {
+  propA:string
+  propB: number
+
+  func: (arg:string) => number
+}
+
+
+
+class ClassA {}
+class ClassB<T=number   > {
+  a:T
+  b: string = ``
+
+  constructor( a:T ) {
+    this.a = a
+  }
+  method1( a, { c } ) {}
+  method2({ c }) {}
+  method3 = a => {}
+}
+
+
+
 const something = []
 const obj = {
   fnExp1() {},
   fnExp2<T>( a:T ) {},
-  fnExp3: a => this,
+  fnExp3: a => obj,
 }
 
 
@@ -13,11 +37,6 @@ const arrow_empty = () => true
 const arrow_var = a => true
 const arrow = (a, b) =>
   obj.fnExp3( 123 ) ?? true
-
-
-
-class ClassA { constructor( a ) {} }
-class ClassB {}
 
 
 
@@ -39,11 +58,16 @@ obj.fnExp3( 1 ).fnExp2({ a:1 })
 
 
 
+switch (true) {
+  case true: 1
+  default: 2
+}
+
 if (something[ 0 ]) { /* */ }
 if (!arrow( 1, 2 )) { /* */ }
 
 for (const value of [ 1, 2, 3 ]);
-for (const value in {});
+for (const prop in {});
 for (let i = 0;  i < 1;  ++i);
 for (let i;  (i = /reg/.exec( `` )););
 
@@ -51,30 +75,28 @@ while (false);
 
 
 
-class X {
-  method1( a, { c } ) {}
-  method2({ c }) {}
-  method3 = a => {}
-}
-
-
-
 const jsx = (
   <article>
     <span about="" accessKey="" aria-activedescendant="" />
+    123
     <span
       about=""
       accessKey=""
       aria-activedescendant=""
-    >
-      abc
-    </span>
+      children="abc"
+    />
     <span>abc {123} def</span>
   </article>
 )
 
+function Component() {
+  return (
+    <p>text</p>
+  )
+}
 
 
-const instanceA = new ClassA( 1 )
-const instanceB = new ClassB()
+
+const instanceA = new ClassA()
+const instanceB = new ClassB<number>( 1 )
 const instanceC = new obj.fnExp2( 1 )
