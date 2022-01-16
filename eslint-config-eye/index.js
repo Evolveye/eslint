@@ -28,6 +28,9 @@ module.exports = {
       modules: true,
     },
   },
+  globals: {
+    JSX: true,
+  },
   rules: {
     //* TYPESCRIPT RULES
     "@typescript-eslint/explicit-module-boundary-types":  [ `off` ],
@@ -73,6 +76,7 @@ module.exports = {
     // */
 
 
+
     //* SPACES RULES
     "spaces/double-spaces-in-for":            [ `error` ],
     "spaces/space-in-arrow-functions-parens": [ `error`, `never` ],
@@ -81,6 +85,7 @@ module.exports = {
     "spaces/space-in-functions-parens":       [ `error`, `always` ],
     "spaces/space-in-loops-and-ifs":          [ `error`, `never` ],
     // */
+
 
 
     //* REACT RULES
@@ -92,7 +97,7 @@ module.exports = {
     "react/jsx-fragments":                [ `error`, `syntax` ],
     "react/jsx-indent":                   [ `error`, 2 ],
     "react/jsx-no-target-blank":          [ `error`, { enforceDynamicLinks:`always` } ],
-    "react/jsx-no-useless-fragment":      [ `error` ],
+    "react/jsx-no-useless-fragment":      [ `off` ],
     "react/jsx-props-no-multi-spaces":    [ `error` ],
     "react/jsx-tag-spacing":              [
       `error`,
@@ -104,6 +109,7 @@ module.exports = {
     "react/jsx-wrap-multilines":          [ `error` ],
     "react/no-children-prop":             [ `off` ],
     // */
+
 
 
     //* STANDARD ESLINT RULES
