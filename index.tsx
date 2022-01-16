@@ -1,5 +1,5 @@
 export type Type = {
-  propA:string
+  propA: string
   propB: number
 
   func: (arg:string) => number
@@ -9,7 +9,7 @@ export type Type = {
 
 class ClassA {}
 class ClassB<T=number   > {
-  a:T
+  a: T
   b: string = ``
 
   constructor( a:T ) {

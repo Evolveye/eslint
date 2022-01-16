@@ -1,7 +1,6 @@
 //
 // TODO rule for spacing after variable creation
-// TODO temove space before/after default param value
-// TODO Add spaces to constructors
+// TODO remove space before/after default param value
 //
 
 module.exports = {
@@ -14,6 +13,7 @@ module.exports = {
   parser: `@typescript-eslint/parser`,
   plugins: [
     `react`,
+    `import`,
     `spaces`,
     `@typescript-eslint`,
   ],
@@ -32,6 +32,7 @@ module.exports = {
     "@typescript-eslint/explicit-module-boundary-types": [ `off` ],
     "@typescript-eslint/no-non-null-assertion": [ `off` ],
     "@typescript-eslint/no-unused-vars": [ `warn` ],
+    "@typescript-eslint/type-annotation-spacing": [ `error`, { before:false, after:true, overrides:{ arrow:{ before:true, after:true }, parameter:{ before:false, after:false } } } ],
     "@typescript-eslint/no-redeclare": [ `off` ],
     "@typescript-eslint/member-delimiter-style": [ `error`, { multiline:{ delimiter:`none`, requireLast:true }, singleline:{ delimiter:`semi`, requireLast:false } } ],
     "@typescript-eslint/method-signature-style": [ `error`, `property` ],
@@ -40,6 +41,7 @@ module.exports = {
     "@typescript-eslint/no-extra-non-null-assertion": [ `error` ],
     '@typescript-eslint/indent': [ `error`, 2, { SwitchCase:1 } ],
     // '@typescript-eslint/no-for-in-array': [ `error` ],
+    "@typescript-eslint/quotes": [ `error`, `backtick` ],
 
     "spaces/space-in-arrow-functions-parens": [ `error`, `never` ],
     "spaces/space-in-functions-parens": [ `error`, `always` ],
@@ -67,7 +69,7 @@ module.exports = {
 
     // "indent": [ `error`, 2, { SwitchCase:1 } ],
     "linebreak-style": [ `off` ],
-    "quotes": [ `error`, `backtick` ],
+    // "quotes": [ `error`, `backtick` ],
     "semi": [ `error`, `never` ],
     "object-curly-spacing": [ `error`, `always` ],
     "prefer-template": [ `off` ],
@@ -80,7 +82,7 @@ module.exports = {
     "array-bracket-newline": [ `error`, { multiline:true } ],
     "block-spacing": [ `error` ],
     "space-unary-ops": [ `error`, { words:true, nonwords:false } ],
-    "spaced-comment": [ `error`, `always`, { block:{ exceptions:[ `\\` ] } } ],
+    "spaced-comment": [ `error`, `always`, { block:{ balanced:true, exceptions:[ `\\` ] }, line:{ markers:[ `/` ] } } ],
     "comma-dangle": [ `error`, `always-multiline` ],
     "eol-last": [ `error`, `always` ],
     "computed-property-spacing": [ `error`, `always`, { enforceForClassMembers:false } ],
@@ -90,6 +92,7 @@ module.exports = {
     "keyword-spacing": [ `error`, { before:true, after:true } ],
     "comma-spacing": [ `error`, { before:false, after:true } ],
     "space-infix-ops": [ `error` ],
+    "import/order": [ `error`, { alphabetize:{ order:`desc` }, groups:[ `builtin`, `external`, `internal`, `parent`, `index`, `sibling`, `object`, `type` ] } ],
     "no-unused-vars": [ `off` ],
     "no-redeclare": [ `off` ],
     "no-constant-condition": [ `off` ],
