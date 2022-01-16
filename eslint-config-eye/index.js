@@ -32,6 +32,7 @@ module.exports = {
     //* TYPESCRIPT RULES
     "@typescript-eslint/explicit-module-boundary-types":  [ `off` ],
     '@typescript-eslint/indent':                          [ `error`, 2, { SwitchCase:1 } ],
+    "@typescript-eslint/keyword-spacing":                 [ `error`, { before:true, after:true } ],
     "@typescript-eslint/member-delimiter-style":          [ `error`, { multiline:{ delimiter:`none`, requireLast:true }, singleline:{ delimiter:`semi`, requireLast:false } } ],
     "@typescript-eslint/method-signature-style":          [ `error`, `property` ],
     // "@typescript-eslint/naming-convention":               [ `error`, ],
@@ -90,7 +91,7 @@ module.exports = {
     "func-call-spacing":              [ `error`, `never` ],
     "import/order":                   [ `error`, { alphabetize:{ order:`desc` }, groups:[ `builtin`, `external`, `internal`, `parent`, `index`, `sibling`, `object`, `type` ] } ],
     "key-spacing":                    [ `error`, { singleLine:{ afterColon:false }, multiLine:{ mode:`minimum` } } ],
-    "keyword-spacing":                [ `error`, { before:true, after:true } ],
+    // "keyword-spacing":                [ `error`, { before:true, after:true } ],
     "linebreak-style":                [ `off` ],
     "no-async-promise-executor":      [ `off` ],
     "no-compare-neg-zero":            [ `off` ],

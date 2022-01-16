@@ -8,7 +8,7 @@ export type Type = {
 
 
 class ClassA {}
-class ClassB<T=number   > {
+class ClassB< T = number, > {
   a: T
   b: string = ``
 
@@ -25,7 +25,7 @@ class ClassB<T=number   > {
 const something = []
 const obj = {
   fnExp1() {},
-  fnExp2<T>( a:T ) {},
+  fnExp2< T   >( a:T ) {},
   fnExp3: a => obj,
 }
 
