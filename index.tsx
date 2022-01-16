@@ -8,16 +8,20 @@ export type Type = {
 
 
 class ClassA {}
-class ClassB< T = number, > {
+class ClassB<T=number> {
   a: T
   b: string = ``
 
   constructor( a:T ) {
+    const b:number | null = (1 + 2) + 3
+    const c = [ 1 ]
+
     this.a = a
   }
-  method1( a, { c } ) {}
+  method1( a:T, { propA }:Type ): void {}
   method2({ c }) {}
   method3 = a => {}
+  method4 = (a = 1) => {}
 }
 
 
@@ -25,7 +29,7 @@ class ClassB< T = number, > {
 const something = []
 const obj = {
   fnExp1() {},
-  fnExp2< T   >( a:T ) {},
+  fnExp2<T>( a:T ) {},
   fnExp3: a => obj,
 }
 
@@ -41,7 +45,7 @@ const arrow = (a, b) =>
 
 
 function * fnGen( a, b, { c } ) {}
-function fnObj({ c }) {}
+function fnObj({ c }): void {}
 function fnArr([ a ]) {}
 function fn( a, b, { c } ) {}
 function fnNothing() {}

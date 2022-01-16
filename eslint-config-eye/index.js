@@ -33,7 +33,19 @@ module.exports = {
     "@typescript-eslint/explicit-module-boundary-types":  [ `off` ],
     '@typescript-eslint/indent':                          [ `error`, 2, { SwitchCase:1 } ],
     "@typescript-eslint/keyword-spacing":                 [ `error`, { before:true, after:true } ],
-    "@typescript-eslint/member-delimiter-style":          [ `error`, { multiline:{ delimiter:`none`, requireLast:true }, singleline:{ delimiter:`semi`, requireLast:false } } ],
+    "@typescript-eslint/member-delimiter-style":          [
+      `error`,
+      {
+        multiline: {
+          delimiter: `none`,
+          requireLast: true,
+        },
+        singleline: {
+          delimiter: `semi`,
+          requireLast: false,
+        },
+      },
+    ],
     "@typescript-eslint/method-signature-style":          [ `error`, `property` ],
     // "@typescript-eslint/naming-convention":               [ `error`, ],
     "@typescript-eslint/no-explicit-any":                 [ `error`, { fixToUnknown:true, ignoreRestArgs:false } ],
@@ -43,7 +55,21 @@ module.exports = {
     "@typescript-eslint/no-redeclare":                    [ `off` ],
     "@typescript-eslint/no-unused-vars":                  [ `warn` ],
     "@typescript-eslint/quotes":                          [ `error`, `backtick` ],
-    "@typescript-eslint/type-annotation-spacing":         [ `error`, { before:false, after:true, overrides:{ arrow:{ before:true, after:true }, parameter:{ before:false, after:false } } } ],
+    "@typescript-eslint/space-infix-ops":                 [ `error` ],
+    "@typescript-eslint/type-annotation-spacing":         [
+      `error`,
+      {
+        before: false,
+        after: false,
+        overrides: {
+          parameter: { before:false, after:false },
+          variable: { before:false, after:false },
+          arrow: { before:true, after:true },
+          property: { before:false, after:true },
+          returnType: { before:false, after:true },
+        },
+      },
+    ],
     // */
 
 
@@ -68,7 +94,10 @@ module.exports = {
     "react/jsx-no-target-blank":          [ `error`, { enforceDynamicLinks:`always` } ],
     "react/jsx-no-useless-fragment":      [ `error` ],
     "react/jsx-props-no-multi-spaces":    [ `error` ],
-    "react/jsx-tag-spacing":              [ `error`, { closingSlash:`never`, beforeSelfClosing:`always`, afterOpening:`never`, beforeClosing:`never` } ],
+    "react/jsx-tag-spacing":              [
+      `error`,
+      { closingSlash:`never`, beforeSelfClosing:`always`, afterOpening:`never`, beforeClosing:`never` },
+    ],
     "react/jsx-uses-react":               [ `error` ],
     "react/jsx-uses-vars":                [ `error` ],
     // "react/jsx-max-props-per-line":       [ `error`, { maximum:2, when:`always` } ],
@@ -89,7 +118,13 @@ module.exports = {
     "computed-property-spacing":      [ `error`, `always`, { enforceForClassMembers:false } ],
     "eol-last":                       [ `error`, `always` ],
     "func-call-spacing":              [ `error`, `never` ],
-    "import/order":                   [ `error`, { alphabetize:{ order:`desc` }, groups:[ `builtin`, `external`, `internal`, `parent`, `index`, `sibling`, `object`, `type` ] } ],
+    "import/order":                   [
+      `error`,
+      {
+        alphabetize: { order:`desc` },
+        groups: [ `builtin`, `external`, `internal`, `parent`, `index`, `sibling`, `object`, `type` ],
+      },
+    ],
     "key-spacing":                    [ `error`, { singleLine:{ afterColon:false }, multiLine:{ mode:`minimum` } } ],
     // "keyword-spacing":                [ `error`, { before:true, after:true } ],
     "linebreak-style":                [ `off` ],
@@ -109,7 +144,7 @@ module.exports = {
     // "sort-keys":                      [ `error` ],
     "space-before-blocks":            [ `error`, `always` ],
     "space-before-function-paren":    [ `error`, `never` ],
-    "space-infix-ops":                [ `error` ],
+    // "space-infix-ops":                [ `error` ],
     // "implicit-arrow-linebreak":       [ `error`, `beside` ],
     "space-unary-ops":                [ `error`, { words:true, nonwords:false } ],
     "spaced-comment":                 [ `error`, `always`, { block:{ balanced:true, exceptions:[ `\\` ] }, line:{ markers:[ `/` ] } } ],
