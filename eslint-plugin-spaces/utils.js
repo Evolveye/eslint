@@ -109,6 +109,12 @@ function checkSpaces( preRequiredData, tokens, parensData, firstTokenIndex ) {
 }
 
 
+/**
+ * @param {string} tokenValue
+ * @param {Token[]} tokens
+ * @param {number} startFrom
+ * @param {number} maxSearchIndex
+ */
 function findTokenIndex( tokenValue, tokens, startFrom = 0, maxSearchIndex = (startFrom + 5) ) {
   const max = tokens.length > maxSearchIndex
     ? maxSearchIndex
@@ -133,6 +139,12 @@ module.exports = {
   messagesForSemi: {
     missingSpaceAfterFirstSemi: `Missing spaces (2 or more) after first loop semicolon`,
     missingSpaceAfterSecondSemi: `Missing spaces (2 or more) after second loop semicolon`,
+  },
+  messagesForJsx: {
+    missingSpaceStart: `Missing space after tag open`,
+    missingSpaceEnd: `Missing space before tag close`,
+    undesirableSpaceStart: `Undesirable space after tag open`,
+    undesirableSpaceEnd: `Undesirable space before tag close`,
   },
 
   validateSpacesInCtx,

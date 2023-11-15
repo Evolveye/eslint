@@ -44,14 +44,14 @@ module.exports = {
           requireLast: true,
         },
         singleline: {
-          delimiter: `semi`,
+          delimiter: `comma`,
           requireLast: false,
         },
       },
     ],
     "@typescript-eslint/method-signature-style":          [ `error`, `property` ],
     // "@typescript-eslint/naming-convention":               [ `error`, ],
-    "@typescript-eslint/no-explicit-any":                 [ `error`, { fixToUnknown:true, ignoreRestArgs:false } ],
+    "@typescript-eslint/no-explicit-any":                 [ `error`, { fixToUnknown:false, ignoreRestArgs:false } ],
     "@typescript-eslint/no-extra-non-null-assertion":     [ `error` ],
     // '@typescript-eslint/no-for-in-array':                 [ `error` ],
     "@typescript-eslint/no-non-null-assertion":           [ `off` ],
@@ -85,6 +85,7 @@ module.exports = {
     "spaces/space-in-constructors":           [ `error`, `always` ],
     "spaces/space-in-functions-parens":       [ `error`, `always` ],
     "spaces/space-in-loops-and-ifs":          [ `error`, `never` ],
+    "spaces/space-around-jsx-children":       [ `error`, `never` ],
     // */
 
 
@@ -138,6 +139,7 @@ module.exports = {
     "no-async-promise-executor":      [ `off` ],
     "no-compare-neg-zero":            [ `off` ],
     "no-constant-condition":          [ `off` ],
+    // "no-console":                     [ `warn`, { allow:[ `warn`, `error` ] } ],
     "no-dupe-class-members":          [ `off` ],
     "no-fallthrough":                 [ `off` ],
     "no-redeclare":                   [ `off` ],

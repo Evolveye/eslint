@@ -1,12 +1,14 @@
 // See: https://astexplorer.net
 
 /** @typedef {import("eslint").Rule.RuleModule} RuleModule */
+/** @typedef {import("eslint").Rule.Node} Node */
 
 const {
   messagesForParens,
   messagesForSemi,
   checkSpaces,
   findTokenIndex,
+  validateSpacesInCtx,
 } = require( `./utils.js` )
 
 /** @type {Record<string,RuleModule>} */
@@ -268,6 +270,90 @@ module.exports = {
               fix: fixer => fixer.insertTextAfterRange(
                 semi2.range, ` `.repeat( 2 - spacesAfterSemi2 ),
               ),
+            })
+          }
+        },
+      }
+    },
+  },
+
+  "space-around-jsx-children": {
+    meta: {
+      docs: { description:`` },
+      schema: [ { "enum":[ `always`, `never` ] } ],
+      messages: messagesForParens,
+      fixable: `whitespace`,
+    },
+    create( context ) {
+
+      const insertSpaces = context.options[ 0 ] === `never` ? false : true
+
+      return {
+        /** @param {Node} node */
+        JSXElement( node ) {
+          const isInline = !node.openingElement.selfClosing
+            && node.openingElement.loc.end.line === node.closingElement.loc.start.line
+
+          if (!isInline || !node.children.length) return
+
+          /** @type {Node} */ const firstChildren = node.children[ 0 ]
+          /** @type {Node} */ const lastChildren = node.children[ node.children.length - 1 ]
+          const leftTrimLength = firstChildren.raw.length - firstChildren.raw.trimLeft().length
+          const rightTrimLength = lastChildren.raw.length - lastChildren.raw.trimRight().length
+
+          if (insertSpaces) {
+            if (!leftTrimLength) context.report({
+              loc: {
+                start: {
+                  line: firstChildren.loc.start.line,
+                  column: firstChildren.loc.start.column - 1,
+                },
+                end: {
+                  line: firstChildren.loc.start.line,
+                  column: firstChildren.loc.start.column + 1,
+                },
+              },
+              messageId: `missingSpaceStart`,
+              fix: fixer => fixer.insertTextBefore( firstChildren, ` ` ),
+            })
+
+            if (!rightTrimLength) context.report({
+              loc: {
+                start: {
+                  line: lastChildren.loc.end.line,
+                  column: lastChildren.loc.end.column - 1,
+                },
+                end: {
+                  line: lastChildren.loc.end.line,
+                  column: lastChildren.loc.end.column + 1,
+                },
+              },
+              messageId: `missingSpaceEnd`,
+              fix: fixer => fixer.insertTextAfter( lastChildren, ` ` ),
+            })
+          } else {
+            if (leftTrimLength) context.report({
+              loc: {
+                start: firstChildren.loc.start,
+                end: {
+                  line: firstChildren.loc.start.line,
+                  column: firstChildren.loc.start.column + leftTrimLength,
+                },
+              },
+              messageId: `undesirableSpaceStart`,
+              fix: fixer => fixer.removeRange([ firstChildren.range[ 0 ], firstChildren.range[ 0 ] + leftTrimLength ]),
+            })
+
+            if (rightTrimLength) context.report({
+              loc: {
+                start: {
+                  line: lastChildren.loc.end.line,
+                  column: lastChildren.loc.end.column - rightTrimLength,
+                },
+                end: lastChildren.loc.end,
+              },
+              messageId: `undesirableSpaceEnd`,
+              fix: fixer => fixer.removeRange([ lastChildren.range[ 1 ] - rightTrimLength, lastChildren.range[ 1 ] ]),
             })
           }
         },

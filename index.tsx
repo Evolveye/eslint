@@ -1,4 +1,7 @@
-export type Type = {
+declare const React
+
+export type TypeA = { propA: number, propB: number}
+export type TypeB = {
   propA: string
   propB: number
 
@@ -18,7 +21,7 @@ class ClassB<T=number> {
 
     this.a = a
   }
-  method1( a:T, { propA }:Type ): void {}
+  method1( a:T, { propA }:TypeA ): void {}
   method2({ c }) {}
   method3 = a => {}
   method4 = (a = 1) => {}
@@ -90,6 +93,7 @@ const jsx = (
       children="abc"
     />
     <span>abc {123} def</span>
+    <span>abc</span>
   </article>
 )
 
