@@ -1,12 +1,15 @@
 # Let's respect our eyes -- eslint code style config
 
-This package provides configured eslint rules mostly for my -- Evolveye.
+This package provides configured eslint rules mostly for me -- Evolveye.
 If you are interested in this code style, or if you want to propose changes -- 
-just [start new discussion](https://github.com/Evolveye/eslint/discussions).
+feel free to [start new discussion](https://github.com/Evolveye/eslint/discussions).
 
 
-```ts
-export type Type = {
+```tsx
+declare const React
+
+export type TypeA = { propA: number, propB: number}
+export type TypeB = {
   propA: string
   propB: number
 
@@ -16,16 +19,20 @@ export type Type = {
 
 
 class ClassA {}
-class ClassB<T=number   > {
+class ClassB<T=number> {
   a: T
   b: string = ``
 
   constructor( a:T ) {
+    const b:number | null = (1 + 2) + 3
+    const c = [ 1 ]
+
     this.a = a
   }
-  method1( a, { c } ) {}
+  method1( a:T, { propA }:TypeA ): void {}
   method2({ c }) {}
   method3 = a => {}
+  method4 = (a = 1) => {}
 }
 
 
@@ -49,7 +56,7 @@ const arrow = (a, b) =>
 
 
 function * fnGen( a, b, { c } ) {}
-function fnObj({ c }) {}
+function fnObj({ c }): void {}
 function fnArr([ a ]) {}
 function fn( a, b, { c } ) {}
 function fnNothing() {}
@@ -94,6 +101,7 @@ const jsx = (
       children="abc"
     />
     <span>abc {123} def</span>
+    <span>abc</span>
   </article>
 )
 
@@ -116,15 +124,7 @@ const instanceC = new obj.fnExp2( 1 )
 
 
 I wanted to create one module that could set all dependencies by itself.
-And this is it! This config is seting up the Babel parser for JavaScript classes
-(private fields, static fields, arrow methods),
-and React for JSX (but JSX is not part of the React, IK).
-
-
-## Eslint rules
-
-
-I configured it only for me (because nobody other wanted to use it ),
-so code style can be a little... It can be not for everybody, I know it.
+And this is it! This config is setting up the JSX and the Babel parser for JavaScript classes
+(private fields, static fields, arrow methods).
 
 Also, I made some custom rules. You can find them [here](../eslint-plugin-spaces)

@@ -4,7 +4,14 @@ module.exports = {
       code: `<p> valid body </p>`,
     },
     {
+      code: `<p> {1} </p>`,
+    },
+    {
       code: `<p>valid body</p>`,
+      options: [ `never` ],
+    },
+    {
+      code: `<p>{1}</p>`,
       options: [ `never` ],
     },
   ],
@@ -25,6 +32,11 @@ module.exports = {
       code: `<p>body </p>`,
       output: `<p> body </p>`,
     },
+    {
+      errors: [ { messageId:`missingSpaceStart` } ],
+      code: `<p>{1} </p>`,
+      output: `<p> {1} </p>`,
+    },
 
 
     // options: [ `never` ]
@@ -44,6 +56,12 @@ module.exports = {
       errors: [ { messageId:`undesirableSpaceEnd` } ],
       code: `<p>body </p>`,
       output: `<p>body</p>`,
+      options: [ `never` ],
+    },
+    {
+      errors: [ { messageId:`undesirableSpaceEnd` } ],
+      code: `<p>{1} </p>`,
+      output: `<p>{1}</p>`,
       options: [ `never` ],
     },
   ],

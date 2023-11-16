@@ -298,8 +298,13 @@ module.exports = {
 
           /** @type {Node} */ const firstChildren = node.children[ 0 ]
           /** @type {Node} */ const lastChildren = node.children[ node.children.length - 1 ]
-          const leftTrimLength = firstChildren.raw.length - firstChildren.raw.trimLeft().length
-          const rightTrimLength = lastChildren.raw.length - lastChildren.raw.trimRight().length
+
+          const leftTrimLength = `raw` in firstChildren
+            ? firstChildren.raw.length - firstChildren.raw.trimStart().length
+            : node.openingElement.loc.end.column - firstChildren.loc.start.column
+          const rightTrimLength = `raw` in lastChildren
+            ? lastChildren.raw.length - lastChildren.raw.trimEnd().length
+            : lastChildren.loc.end.column - node.closingElement.loc.start.column
 
           if (insertSpaces) {
             if (!leftTrimLength) context.report({
