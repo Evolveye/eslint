@@ -1,8 +1,8 @@
-/*
-obj.methodA( 1 ).methodB({ b })
-*/
-module.exports = {
-  valid: [
+import { InvalidTestCase, ValidTestCase } from "@typescript-eslint/rule-tester"
+import { MessageIds, Options } from "../src/rules/space-in-calls"
+
+
+export const validCases:ValidTestCase<Options>[] = [
     // { code:`fn()` },
     // { code:`fn({ c:3 })` },
     // { code:`fn( 1, 2, { c:3 } )` },
@@ -11,8 +11,9 @@ module.exports = {
     // { code:`obj.methodA( 1 ).methodB( 2 )` },
     { code:`obj.methodA( 1 ).methodB({ b })` },
     // { code:`obj.methodA({ a }).methodB({ b })` },
-  ],
-  invalid: [
+]
+
+export const invalidCases:InvalidTestCase<MessageIds, Options>[] = [
     {
       errors: [ { messageId:`undesirableSpaceInParens` } ],
       code: `fn( )`,
@@ -100,5 +101,4 @@ module.exports = {
       output: `obj.method(a, { c })`,
       options: [ `never` ],
     },
-  ],
-}
+]

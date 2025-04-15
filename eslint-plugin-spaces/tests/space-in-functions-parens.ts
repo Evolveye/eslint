@@ -1,5 +1,8 @@
-module.exports = {
-  valid: [
+import { InvalidTestCase, ValidTestCase } from "@typescript-eslint/rule-tester"
+import { MessageIds, Options } from "../src/rules/space-in-functions-parens"
+
+
+export const validCases:ValidTestCase<Options>[] = [
     { code:`function fnObj() {}` },
     { code:`function fnObj( c ) {}` },
     { code:`function fnObj({ c }) {}` },
@@ -7,8 +10,9 @@ module.exports = {
     { code:`class X { method() {} }` },
     { code:`class X { method( c ) {} }` },
     { code:`class X { method({ c }) {} }` },
-  ],
-  invalid: [
+]
+
+export const invalidCases:InvalidTestCase<MessageIds, Options>[] = [
     {
       errors: [ { messageId:`undesirableSpaceInParens` } ],
       code: `function fnObj( ) {}`,
@@ -96,5 +100,4 @@ module.exports = {
       output: `class X { method(a, { c }) {} }`,
       options: [ `never` ],
     },
-  ],
-}
+]

@@ -1,5 +1,8 @@
-module.exports = {
-  valid: [
+import { InvalidTestCase, ValidTestCase } from "@typescript-eslint/rule-tester"
+import { MessageIds, Options } from "../src/rules/space-around-jsx-children"
+
+
+export const validCases:ValidTestCase<Options>[] = [
     {
       code: `<p> valid body </p>`,
     },
@@ -14,8 +17,8 @@ module.exports = {
       code: `<p>{1}</p>`,
       options: [ `never` ],
     },
-  ],
-  invalid: [
+]
+export const invalidCases:InvalidTestCase<MessageIds, Options>[] = [
     // options: [ `always` ]
     {
       errors: [ { messageId:`missingSpaceStart` }, { messageId:`missingSpaceEnd` } ],
@@ -64,5 +67,4 @@ module.exports = {
       output: `<p>{1}</p>`,
       options: [ `never` ],
     },
-  ],
-}
+]

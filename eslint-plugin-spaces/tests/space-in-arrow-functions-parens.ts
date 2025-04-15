@@ -1,11 +1,15 @@
-module.exports = {
-  valid: [
+import { InvalidTestCase, ValidTestCase } from "@typescript-eslint/rule-tester"
+import { MessageIds, Options } from "../src/rules/space-in-arrow-functions-parens"
+
+
+export const validCases:ValidTestCase<Options>[] = [
     { code:`const arrow_obj = a => true` },
     { code:`const arrow_obj = () => true` },
     { code:`const arrow_obj = ({ abc }) => true` },
     { code:`const arrow_obj = ( { abc }, a ) => true` },
-  ],
-  invalid: [
+]
+
+export const invalidCases:InvalidTestCase<MessageIds, Options>[] = [
     {
       errors: [ { messageId:`undesirableSpaceInParens` } ],
       code: `const arrow_obj = ( ) => true`,
@@ -77,5 +81,4 @@ module.exports = {
       output: `const arrow_obj = (a, { abc }) => true`,
       options: [ `never` ],
     },
-  ],
-}
+]
